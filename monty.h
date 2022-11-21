@@ -34,3 +34,19 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+void push(stack_t **stack, unsigned int linenum);
+void pall(stack_t **stack, unsigned int linenum);
+void pint(stack_t **stack, unsigned int linenum);
+void pop(stack_t **stack, unsigned int linenum);
+void swap(stack_t **stack, unsigned int linenum);
+void add(stack_t **stack, unsigned int linenum);
+void nop(stack_t **stack, unsigned int linenum);
+
+void free_stack(stack_t *stack);
+/*parser*/
+void (*getop(char *opcode))(stack_t **stack, unsigned int linenum);
+
+/*global variable*/
+extern FILE *file;
+#endif
