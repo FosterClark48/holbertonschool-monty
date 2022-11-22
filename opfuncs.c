@@ -39,11 +39,14 @@ void pall(stack_t **stack, unsigned int linenum)
 	stack_t *node = *stack;
 	(void)linenum;
 
-	while (node)
+	if (node->next)
 	{
-		printf("%d\n", node->n);
-		node = node->next;
-	}
+		while (node)
+		{
+			printf("%d\n", node->n);
+			node = node->next;
+		}
+	}	
 }
 
 /**
