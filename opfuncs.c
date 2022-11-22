@@ -13,7 +13,7 @@ void push(stack_t **stack, unsigned int linenum)
 	if (!newNode)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		freeStack(stack);
+		free_stack(stack);
 		err();
 	}
 	(void)linenum;
@@ -29,7 +29,7 @@ void push(stack_t **stack, unsigned int linenum)
 }
 
 /**
-*pint - prints all vals on stack starting from top
+*pall - prints all vals on stack starting from top
 *@stack: head node
 *@linenum: current line number of file
 *Return: void
@@ -41,7 +41,7 @@ void pall(stack_t **stack, unsigned int linenum)
 
 	while (node)
 	{
-		printf(("%d\n", node->n);
+		printf("%d\n", node->n);
 		node = node->next;
 	}
 }

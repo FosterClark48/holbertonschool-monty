@@ -1,5 +1,6 @@
 #include "monty.h"
-/** pop - Removes node from top of stack
+/**
+ * pop - Removes node from top of stack
  * @stack: pointer to stack
  * @linenum: number line in the m file
  *
@@ -12,8 +13,8 @@ void pop(stack_t **stack, unsigned int linenum)
 
 	if ((*stack) == NULL)
 	{
-		fprintf(stderr, "L%u: can't pop an empty stack\n", linenumber);
-		free_global(*stack);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", linenum);
+		fclose(file);
 		exit(EXIT_FAILURE);
 	}
 /** unlinking the front node and then freeing it*/
@@ -41,8 +42,8 @@ void swap(stack_t **stack, unsigned int linenum)
 	{
 		if (temp == NULL)
 		{
-			fprintf(stderr, "L%u: can't swap, stack too short\n", linenumber);
-			free_global(*stack);
+			fprintf(stderr, "L%u: can't swap, stack too short\n", linenum);
+			fclose(file);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -71,7 +72,7 @@ void nop(stack_t **stack, unsigned int linenum)
 }
 
 /**
- * add - replaces first two nodes with the sum of the two at the top of the stack
+ * add - replaces first two nodes with the sum of the two at the top
  * @stack: linked list
  * @linenum: current line
  */
@@ -85,12 +86,12 @@ void add(stack_t **stack, unsigned int linenum)
 	{
 		if (temp == NULL)
 		{
-			fprintf(stderr, "L%u: can't add, stack too short\n", linenumber);
-			free_global(*stack);
+			fprintf(stderr, "L%u: can't add, stack too short\n", linenum);
+			fclose(file);
 			exit(EXIT_FAILURE);
 		}
 	}
-/* adding 1 and 2 into the new node that is now replacing them and then freeing our temp*/
+/* adding 1 and 2 into the new node that is now replacing them, freeing temp*/
 	temp->next->n = temp->next->n + temp->n;
 	*stack = temp->next;
 	(*stack)->prev = NULL;
