@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 				free(buffer), buffer = NULL, free_stack(&stack);
 				fprintf(stderr, "L%d: usage: push integer\n", linenum), err();
 			}
-			strcpy(pushNum, token);
+			strcpy(addNum, token);
 		}
 		free(buffer), buffer = NULL;
 		f(&stack, linenum);

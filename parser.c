@@ -1,14 +1,14 @@
 #include "monty.h"
 /**
 *parser - gets matching function from opcode
-*@opcode: opcode given from parsing line
+*@stack: stack operating on
+*@code: strinf used for correct function
+*@l: line number
 *Return: function pointer
 */
-void (*parser(char *opcode))(stack_t **stack, unsigned int linenum)
+void (*parser(stack_t **stack, int l, char *code))(stack_t **, unsigned int)
 {
-	unsigned int i;
-
-	instruction_t opFunction[] = {
+	instruction_t instruction[] = {
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
@@ -16,18 +16,22 @@ void (*parser(char *opcode))(stack_t **stack, unsigned int linenum)
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},
-		{NULL, NULL}
 	};
+	int i = 0;
 
-	for (i = 0; opFunction[i].opcode; i++)
+	while (strcmp(code, instruction[i].opcode) != 0)
 	{
-		if (strcmp(opFunction[i].opcode, opcode) == 0)
+		i++;
+		if (i > 7)
 		{
-			return (opFunction[i].f);
+			fprintf(stderr, "L%d: unknown instruction %s\n", l, code);
+			free_stack(stack);
+			err();
 		}
 	}
-	return (NULL);
+	return (instruction[i].f);
 }
+
 /**
 *free_stack - frees a linked list stack
 *@stack: stack to free

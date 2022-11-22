@@ -46,7 +46,7 @@ void nop(stack_t **stack, unsigned int linenum);
 void err(void);
 void free_stack(stack_t **stack);
 /*parser*/
-void (*parser(char *opcode))(stack_t **stack, unsigned int linenum);
+void (*parser(stack_t **stack, int l, char *code))(stack_t **, unsigned int);
 
 /*global variable*/
 extern FILE *file;
