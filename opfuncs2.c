@@ -2,18 +2,18 @@
 /**
  * pop - Removes node from top of stack
  * @stack: pointer to stack
- * @linenum: number line in the m file
+ * @line_number: number line in the m file
  *
  * Return: Void
  */
 
-void pop(stack_t **stack, unsigned int linenum)
+void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
 
 	if ((*stack) == NULL)
 	{
-		fprintf(stderr, "L%u: can't pop an empty stack\n", linenum);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		fclose(file);
 		exit(EXIT_FAILURE);
 	}
@@ -28,12 +28,12 @@ void pop(stack_t **stack, unsigned int linenum)
 /**
  * swap - Swaps the top two nodes on the stack
  * @stack:Pointer to stack
- * @linenum: line number
+ * @line_number: line number
  *
  * Return: Void
  */
 
-void swap(stack_t **stack, unsigned int linenum)
+void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
 	int i = 1;
@@ -42,7 +42,7 @@ void swap(stack_t **stack, unsigned int linenum)
 	{
 		if (temp == NULL)
 		{
-			fprintf(stderr, "L%u: can't swap, stack too short\n", linenum);
+			fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
 			fclose(file);
 			exit(EXIT_FAILURE);
 		}
@@ -60,23 +60,23 @@ void swap(stack_t **stack, unsigned int linenum)
 /**
  * nop - uh...
  * @stack: points to stack
- * @linenum: line num
+ * @line_number: line num
  *
  * Return : Void
  */
 
-void nop(stack_t **stack, unsigned int linenum)
+void nop(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
-	(void)linenum;
+	(void)line_number;
 }
 
 /**
  * add - replaces first two nodes with the sum of the two at the top
  * @stack: linked list
- * @linenum: current line
+ * @line_number: current line
  */
-void add(stack_t **stack, unsigned int linenum)
+void add(stack_t **stack, unsigned int line_number)
 {
 /* temp node to store the sum of 1 and 2 */
 	stack_t *temp;
@@ -86,7 +86,7 @@ void add(stack_t **stack, unsigned int linenum)
 	{
 		if (temp == NULL)
 		{
-			fprintf(stderr, "L%u: can't add, stack too short\n", linenum);
+			fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
 			free_stack(stack);
 			err();
 		}

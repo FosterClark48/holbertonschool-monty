@@ -10,18 +10,18 @@ FILE *file = NULL;
 */
 int main(int argc, char **argv)
 {
-	void (*f)(stack_t **, unsigned int linenum) = NULL;
+	void (*f)(stack_t **, unsigned int line_number) = NULL;
 	char *buffer = NULL, op[50] = {'\0'}, addNum[50] = {'\0'}, *token = NULL;
 	size_t buffsize = 0;
 	stack_t *stack = NULL;
-	unsigned int linenum = 1;
+	unsigned int line_number = 1;
 
 	if (argc != 2)
 		fprintf(stderr, "USAGE: monty file\n"), exit(EXIT_FAILURE);
 	file = fopen(argv[1], "r");
 	if (!file)
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]), exit(EXIT_FAILURE);
-	for (; getline(&buffer, &buffsize, file) != EOF; linenum++)
+	for (; getline(&buffer, &buffsize, file) != EOF; line_number++)
 	{
 		token = strtok((buffer), " \t\n");
 		if (!token)
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 			continue;
 		}
 		strcpy(op, token);
-		f = parser(&stack, linenum, op);
+		f = parser(&stack, line_number, op);
 		if (!f)
 			fprintf(stderr, "Error: malloc failed\n"), err();
 		if (strcmp(op, "push") == 0)
@@ -39,14 +39,14 @@ int main(int argc, char **argv)
 			if (!token)
 			{
 				free(buffer), buffer = NULL, free_stack(&stack);
-				fprintf(stderr, "L%d: usage: push integer\n", linenum), err();
+				fprintf(stderr, "L%d: usage: push integer\n", line_number), err();
 			}
 			strcpy(addNum, token);
 		}
 		free(buffer), buffer = NULL;
-		f(&stack, linenum);
+		f(&stack, line_number);
 		if (strcmp(op, "push") == 0)
-			pushHelp(&stack, linenum, addNum);
+			pushHelp(&stack, line_number, addNum);
 	}
 	free(buffer), fclose(file), free_stack(&stack);
 	return (EXIT_SUCCESS);
@@ -55,10 +55,10 @@ int main(int argc, char **argv)
 /**
 *pushHelp - helper for push op that sets val for new node
 *@stack: linked list to push to
-*@linenum: current line of monty file
+*@line_number: current line of monty file
 *@addNum: number to add to new node
 */
-void pushHelp(stack_t **stack, unsigned int linenum, char *addNum)
+void pushHelp(stack_t **stack, unsigned int line_number, char *addNum)
 {
 	if (strcmp(addNum, "0") == 0)
 	{
@@ -69,7 +69,7 @@ void pushHelp(stack_t **stack, unsigned int linenum, char *addNum)
 		(*stack)->n = atoi(addNum);
 		if ((*stack)->n == 0 || (addNum[0] != '-' && (*stack)->n == -1))
 		{
-			fprintf(stderr, "Error: L%d: usage: push integer\n", linenum);
+			fprintf(stderr, "Error: L%d: usage: push integer\n", line_number);
 			free_stack(stack);
 			err();
 		}

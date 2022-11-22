@@ -2,10 +2,10 @@
 /**
 *push - Adds element to a stack
 *@stack: linked list stack to push to
-*@linenum: current line number of bytecode file
+*@line_number: current line number of bytecode file
 *Return: void
 */
-void push(stack_t **stack, unsigned int linenum)
+void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *newNode;
 
@@ -16,7 +16,7 @@ void push(stack_t **stack, unsigned int linenum)
 		free_stack(stack);
 		err();
 	}
-	(void)linenum;
+	(void)line_number;
 
 	if (*stack)
 	{
@@ -31,13 +31,13 @@ void push(stack_t **stack, unsigned int linenum)
 /**
 *pall - prints all vals on stack starting from top
 *@stack: head node
-*@linenum: current line number of file
+*@line_number: current line number of file
 *Return: void
 */
-void pall(stack_t **stack, unsigned int linenum)
+void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *node = *stack;
-	(void)linenum;
+	(void)line_number;
 
 	if (node)
 	{
@@ -52,14 +52,14 @@ void pall(stack_t **stack, unsigned int linenum)
 /**
 *pint - prints val at top of stack
 *@stack: head node
-*@linenum: current line number of file
+*@line_number: current line number of file
 *Return: void
 */
-void pint(stack_t **stack, unsigned int linenum)
+void pint(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack))
 	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", linenum);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		fclose(file);
 		free_stack(stack);
 		exit(EXIT_FAILURE);
