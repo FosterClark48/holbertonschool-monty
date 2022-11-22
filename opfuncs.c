@@ -39,7 +39,7 @@ void pall(stack_t **stack, unsigned int linenum)
 	stack_t *node = *stack;
 	(void)linenum;
 
-	if (node->next)
+	if (node)
 	{
 		while (node)
 		{
