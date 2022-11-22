@@ -10,7 +10,7 @@ FILE *file = NULL;
 */
 int main(int argc, char **argv)
 {
-	void (*f)(stack_t **, unsigned int line_number) = NULL;
+	void (*f)(stack_t **, unsigned int) = NULL;
 	char *buffer = NULL, op[50] = {'\0'}, addNum[50] = {'\0'}, *token = NULL;
 	size_t buffsize = 0;
 	stack_t *stack = NULL;
