@@ -79,7 +79,7 @@ void nop(stack_t **stack, unsigned int linenum)
 void add(stack_t **stack, unsigned int linenum)
 {
 /* temp node to store the sum of 1 and 2 */
-	stack_t *temp = *stack;
+	stack_t *temp;
 	int i = 1;
 
 	for (temp = *stack; i < 3; i++, temp = temp->next)
@@ -87,12 +87,12 @@ void add(stack_t **stack, unsigned int linenum)
 		if (temp == NULL)
 		{
 			fprintf(stderr, "L%u: can't add, stack too short\n", linenum);
-			fclose(file);
-			exit(EXIT_FAILURE);
+			free_stack(stack);
+			err();
 		}
 	}
 /* adding 1 and 2 into the new node that is now replacing them, freeing temp*/
-	temp->next->n = temp->next->n + temp->n;
+	temp->next->n += temp->n;
 	*stack = temp->next;
 	(*stack)->prev = NULL;
 	free(temp);
