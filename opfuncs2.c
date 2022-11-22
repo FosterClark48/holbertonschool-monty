@@ -84,7 +84,7 @@ void add(stack_t **stack, unsigned int line_number)
 
 	for (temp = *stack; i < 3; i++, temp = temp->next)
 	{
-		if (temp == NULL)
+		if (!temp || !temp->next)
 		{
 			fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
 			free_stack(stack);
