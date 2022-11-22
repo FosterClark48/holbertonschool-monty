@@ -6,7 +6,7 @@
 */
 void (*parser(char *opcode))(stack_t **stack, unsigned int linenum)
 {
-	usigned int i;
+	unsigned int i;
 
 	instruction_t opFunction[] = {
 		{"push", push},
@@ -40,7 +40,7 @@ void free_stack(stack_t **stack)
 	}
 	free_stack(&((*stack)->next));
 	free(*stack);
-	*stack = NULL
+	*stack = NULL;
 }
 /**
 *err - error handler
