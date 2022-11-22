@@ -46,7 +46,7 @@ void pall(stack_t **stack, unsigned int linenum)
 			printf("%d\n", node->n);
 			node = node->next;
 		}
-	}	
+	}
 }
 
 /**
